@@ -4,10 +4,12 @@
 <html lang="ja">
 
   <head>
-    <title>アルバムサンプル for Bootstrap · Bootstrap</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-    <link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "css/album.css" %}" rel="stylesheet" type="text/css">
   </head>
 
   <body>
@@ -38,54 +40,8 @@
       </div>
     </header>
 
-    <main role="main">
-
-      <section class="jumbotron text-center">
-        <div class="container">
-          <!-- <h1 class="jumbotron-heading">Album example</h1> -->
-          <h4 class="jumbotron-heading">アルバムページのサンプル</h4>
-          <!-- <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p> -->
-          <p class="lead text-muted"></p>
-          <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                placeholder="Enter email">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                  alt="Card image cap">
-                <div class="card-body">
-                  <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-                  <p class="card-text">これは写真の解説文付きのカードです。自然に説明を加えることができます。しかしこの文章は少し長いかもしれません。</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
-                      <button type="button" class="btn btn-sm btn-outline-secondary">見る</button>
-                      <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                      <button type="button" class="btn btn-sm btn-outline-secondary">編集</button>
-                    </div>
-                    <!-- <small class="text-muted">9 mins</small> -->
-                    <small class="text-muted">9分</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </main>
+    {% block content %}
+    {% endblock content %}
 
     <footer class="text-muted">
       <div class="container">
