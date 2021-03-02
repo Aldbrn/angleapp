@@ -10,6 +10,7 @@ class Post(models.Model):
     fish = models.CharField(max_length=20)
     size = models.PositiveIntegerField(null=True, blank=True)
     comment = models.TextField(blank=True)
+    pref = models.CharField(max_length=20)
     area = models.CharField(max_length=20)
     created_at = models.DateField(auto_now=True)
 
