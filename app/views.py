@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from .models import Post
+from .forms import PostForm
 
 # Create your views here.
 
@@ -44,4 +47,31 @@ def index(request):
 
 def users_detail(request, pk):
     user = get_object_or_404(User, pk=pk)
-    return render(request, "app/users_detail.html", {"user": user})
+    posts = user.post_set.all().order_by("-created_at")
+    return render(request, "app/users_detail.html", {"user": user, "posts": posts})
+
+
+@login_required
+def posts_new(request):
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+        return redirect("users_detail", pk=request.user.pk)
+    else:
+        form = PostForm()
+    return render(request, "app/posts_new.html", {"form": form})
+
+
+def posts_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, "app/posts_detail.html", {"post": post})
+
+
+@require_POST
+def posts_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk, user=request.user)
+    post.delete()
+    return redirect("users_detail", request.user.id)

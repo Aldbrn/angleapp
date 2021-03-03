@@ -5,44 +5,28 @@
 
   <section class="jumbotron text-center">
     <div class="container">
-      <h4 class="jumbotron-heading">アルバムページのサンプル</h4>
+      <h4 class="jumbotron-heading"></h4>
       <p class="lead text-muted"></p>
       <form>
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="Enter email">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <label for="exampleInputEmail1">魚種から探す</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="魚種[例：ブラックバス]">
+          {% comment %} <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+            else.</small> {% endcomment %}
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">エリア(県名)から探す</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="エリア[例：秋田県]">
+          {% comment %} <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+            else.</small> {% endcomment %}
         </div>
       </form>
     </div>
   </section>
 
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
-        {% for post in posts %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap" height=255px>
-            <div class="card-body">
-              <p class="card-text">魚種:{{ post.fish }}</p>
-              <p>エリア:{{ post.area }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">見る</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">編集</button>
-                </div>
-                <small class="text-muted">9分</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
+  {% include "app/post_list.html" %}
 
 </main>
 {% endblock content %}
