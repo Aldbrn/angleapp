@@ -17,8 +17,8 @@
     <script>
       function initMap() {
 
-        var target = document.getElementById('map'); //マップを表示する要素を指定
-        var address = "{{ post.pref }}" + "{{ post.area }}"; //住所を指定
+        var target = document.getElementById('map');
+        var address = "{{ post.pref }}" + "{{ post.area }}";
         var geocoder = new google.maps.Geocoder();
 
         geocoder.geocode({
@@ -40,7 +40,6 @@
             });
 
           } else {
-            //住所が存在しない場合の処理
             alert('住所が正しくないか存在しません。');
             target.style.display = 'none';
           }

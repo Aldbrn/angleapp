@@ -4,6 +4,7 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.db.models import Q
 from .models import Post
 from .forms import PostForm
 
@@ -41,7 +42,11 @@ def loginfunc(request):
 
 
 def index(request):
-    posts = Post.objects.all().order_by("-created_at")
+    query = request.GET.get("query")
+    if query:
+        posts = Post.objects.filter(Q(fish__icontains=query) | Q(pref__icontains=query))
+    else:
+        posts = Post.objects.all().order_by("-created_at")
     return render(request, "app/index.html", {"posts": posts})
 
 

@@ -7,25 +7,25 @@
     <div class="container">
       <h4 class="jumbotron-heading"></h4>
       <p class="lead text-muted"></p>
-      <form>
+      <form method="GET" action="{% url "index" %}">{% csrf_token %}
         <label>魚種から探す</label>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="魚種[例：シーバス]">
+          <input type="text" class="form-control" name="query" value="{{ request.GET.query }}" placeholder="魚種[例：シーバス]">
           <span class="input-group-btn">
             <button class="btn btn-primary" type="submit">検索</button>
           </span>
         </div>
       </form>
       <hr>
-      <form>
+      {% comment %} <form method="GET" action="{% url "index" %}">{% csrf_token %}
         <label>エリア(県名)から探す</label>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="エリア[例：秋田県]">
+          <input type="text" class="form-control" name="query" value="{{ request.GET.query }}" placeholder="エリア[例：秋田県]">
           <span class="input-group-btn">
             <button class="btn btn-primary" type="submit">検索</button>
           </span>
         </div>
-      </form>
+      </form> {% endcomment %}
     </div>
   </section>
 
