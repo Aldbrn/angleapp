@@ -48,7 +48,7 @@ def index(request):
         posts = Post.objects.filter(Q(fish__icontains=query) | Q(pref__icontains=query))
     else:
         posts = Post.objects.all().order_by("-created_at")
-    paginator = Paginator(posts, 12)
+    paginator = Paginator(posts, 6)
     p = request.GET.get("p")
 
     try:

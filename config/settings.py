@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "$2_=$tf2d(3h1*q0dywp8pzrc_cxeee)d(&zlka1t=z&f*re$5"
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -137,6 +137,10 @@ MEDIA_URL = "/media/"
 
 MEDIA_ROOT = BASE_DIR / "media"
 
+LOGIN_URL = "login"
+
+LOGOUT_REDIRECT_URL = "index"
+
 LOGOUT_REDIRECT_URL = "index"
 
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
@@ -147,6 +151,7 @@ except ImportError:
     pass
 
 if not DEBUG:
+    SECRET_KEY = os.environ["SECRET_KEY"]
     import django_heroku
 
     django_heroku.settings(locals())
