@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{% url "posts_new" %}" method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   <table>
     <tr>

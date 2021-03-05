@@ -3,8 +3,8 @@
 {% block content %}
 
 <div class="text-center">
-  <h2>{{ user.username }}</h2>
-  <h4>投稿数：{{ posts.count }}</h4>
+  <h1>{{ user.username }}</h1>
+  <h3>投稿数：{{ posts.count }}</h3>
 </div>
 
 {% include "app/post_list.html" %}
