@@ -48,6 +48,7 @@ def index(request):
         posts = Post.objects.filter(Q(fish__icontains=query) | Q(pref__icontains=query))
     else:
         posts = Post.objects.all().order_by("-created_at")
+
     paginator = Paginator(posts, 9)
     p = request.GET.get("p")
 
@@ -64,7 +65,23 @@ def index(request):
 def users_detail(request, pk):
     user = get_object_or_404(User, pk=pk)
     posts = user.post_set.all().order_by("-created_at")
-    return render(request, "app/users_detail.html", {"user": user, "posts": posts})
+    tmp_posts = posts
+
+    paginator = Paginator(posts, 9)
+    p = request.GET.get("p")
+
+    try:
+        posts = paginator.get_page(p)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    return render(
+        request,
+        "app/users_detail.html",
+        {"user": user, "posts": posts, "tmp_posts": tmp_posts},
+    )
 
 
 @login_required
