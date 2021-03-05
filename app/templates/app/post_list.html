@@ -8,7 +8,7 @@
               alt="Card image cap" height=255px></a>
           <div class="card-body">
             <p class="card-text">魚種：{{ post.fish }}</p>
-            <p>エリア：{{ post.area }}</p>
+            <p>エリア：{{ post.pref }}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <a href="{% url "posts_detail" post.id %}" class="btn btn-outline-secondary btn-sm" role="button"
