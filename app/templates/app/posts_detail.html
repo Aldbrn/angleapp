@@ -49,7 +49,7 @@
     <script src="//maps.google.com/maps/api/js?key=AIzaSyCDj6rE4TQWx2rmbawJo3jO2ORJdWejorA&callback=initMap"></script>
     {% if request.user == post.user %}
     <form method="POST" action="{% url "posts_delete" post.id %}" class="m-5">{% csrf_token %}
-      <button class="btn btn-danger" type="submit" onclick='return confirm(" 本当に削除しますか?");'>
+      <button class="btn btn-danger" type="submit" onclick='return confirm("本当に削除しますか?");'>
         削除
       </button>
     </form>
