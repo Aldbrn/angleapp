@@ -4,6 +4,7 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from .models import Post
 from .forms import PostForm
@@ -42,11 +43,21 @@ def loginfunc(request):
 
 
 def index(request):
-    query = request.GET.get("query")
+    query = request.GET.get("q")
     if query:
         posts = Post.objects.filter(Q(fish__icontains=query) | Q(pref__icontains=query))
     else:
         posts = Post.objects.all().order_by("-created_at")
+    paginator = Paginator(posts, 9)
+    p = request.GET.get("p")
+
+    try:
+        posts = paginator.get_page(p)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
     return render(request, "app/index.html", {"posts": posts})
 
 
